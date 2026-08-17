@@ -1,0 +1,191 @@
+/* ============================================================
+   CareerAI 全局样式
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg-canvas);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  line-height: 22px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* 文本选区（品牌色系，克制） */
+::selection {
+  background: var(--color-primary-100);
+  color: var(--color-text-primary);
+}
+
+/* 数字使用等宽数字特性 */
+.tnum {
+  font-feature-settings: var(--font-numeric-feature);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 视觉隐藏（无障碍：sr-only） */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 页面内容容器 */
+.container-max {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.container-read {
+  width: 100%;
+  max-width: var(--container-read);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* 页面通用留白：顶部 48px / 底部 64px */
+.page-body {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-16);
+}
+
+/* 页面主标题（24px 600 + 间距），各页统一 */
+.page-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  line-height: 34px;
+  margin: 0 0 var(--space-2);
+}
+
+.page-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-6);
+}
+
+/* 卡片阴影对齐设计规范 ：默认平铺无阴影靠边框，hover 时 shadow-1 */
+.ant-card {
+  box-shadow: var(--shadow-0);
+}
+.ant-card-hoverable:hover {
+  box-shadow: var(--shadow-1);
+}
+
+/* TopNav 水平菜单：激活项 primary-600 + 600 字重（设计规范 C-07） */
+.topnav-menu.ant-menu-horizontal {
+  font-size: var(--font-size-base);
+}
+.topnav-menu.ant-menu-horizontal .ant-menu-item {
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+.topnav-menu.ant-menu-horizontal .ant-menu-item-selected {
+  font-weight: 600;
+  color: var(--color-primary-600);
+}
+.topnav-menu.ant-menu-horizontal .ant-menu-item-selected::after {
+  border-bottom-color: var(--color-primary-600);
+}
+.topnav-menu.ant-menu-horizontal .ant-menu-item:hover {
+  color: var(--color-primary-600);
+}
+
+/* 报告流步骤条：当前步加深、完成连接线加粗（C-09） */
+.report-stepper .ant-steps-item-process .ant-steps-item-icon {
+  background: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+}
+.report-stepper .ant-steps-item-finish .ant-steps-item-icon {
+  border-color: var(--color-primary-600);
+  color: var(--color-primary-600);
+}
+.report-stepper .ant-steps-item-finish .ant-steps-item-tail::after {
+  background-color: var(--color-primary-500);
+}
+.report-stepper .ant-steps-item-process .ant-steps-item-title {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* 市场看板岗位行：hover 反馈 */
+.market-job-item:hover {
+  background: var(--color-primary-050);
+}
+
+/* 键盘焦点环：2px focus-ring 外环 + 2px 白内环（全局不得 outline:none） */
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff inset;
+}
+
+/* 触控目标最小 44px */
+button.ant-btn,
+.ant-btn {
+  min-height: 40px;
+}
+
+/* 减少动效：关闭非必要动画 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 打印友好（隐私页：无导航无页脚） */
+@media print {
+  .topnav,
+  .app-footer,
+  .print-hidden {
+    display: none !important;
+  }
+}
+
+/* 移动端：汉堡按钮显示，桌面菜单隐藏 */
+@media (max-width: 767px) {
+  .mobile-menu-btn {
+    display: inline-flex !important;
+  }
+  .topnav-menu {
+    display: none !important;
+  }
+}
+
+/* 移动端基础 */
+@media (max-width: 767px) {
+  .container-max,
+  .container-read {
+    padding: 0 var(--space-4);
+  }
+  .page-body {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-12);
+  }
+}

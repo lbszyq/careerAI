@@ -1,0 +1,16 @@
+# DeepSeek 模型配置（architecture.md 模型调用层）
+# env 覆盖优先级高于本文件：DEEPSEEK_MODEL / DEEPSEEK_FALLBACK_MODEL / DEEPSEEK_BASE_URL / DEEPSEEK_API_KEY
+main:
+  model: deepseek-v4-flash # 主模型（定案）
+  base_url: https://api.deepseek.com
+  price_per_million_input: 2.0 # ¥/百万输入 tokens（成本估算口径）
+  price_per_million_output: 4.0 # ¥/百万输出 tokens
+  timeout_seconds: 30 # 单次调用 ≤30s
+  max_retries: 3 # 429/5xx 指数退避重试
+fallback:
+  model: deepseek-v4-pro # 备选兼容模型（故障切换，：与 实测可用模型对齐）
+  base_url: https://api.deepseek.com
+  price_per_million_input: 1.0
+  price_per_million_output: 2.0
+  timeout_seconds: 30
+  max_retries: 2

@@ -1,0 +1,36 @@
+```json
+{
+"ocr_text":"简历
+姓名：张明远
+求职意向：后端开发工程师
+教育背景
+学校：华岚理工大学
+专业：计算机科学与技术
+学历：本科
+毕业年份：2025
+GPA：3.7
+技能
+Python、Java、SQL、Git、Docker
+实习经历
+1. 星辰科技有限公司 后端开发实习生 2024.06-2024.09
+参与订单系统开发，使用 FastAPI 编写 REST 接口。
+项目经历
+1. RAG 智能问答系统（LangGraph、pgvector、Celery）
+基于 LangGraph 构建RAG问答链路，pgvector 向量检索。
+2. 电商全栈应用（Vue、TypeScript）
+前端 Vue 组件化开发，TypeScript 类型约束。
+证书
+CET-6、软考中级
+（合成简历样本，人物与机构均为虚构）",
+"name":"张明远",
+"school":"华岚理工大学",
+"major":"计算机科学与技术",
+"education":"本科",
+"graduation_year":2025,
+"gpa":"3.7",
+"skills":["Python", "Java", "SQL", "Git", "Docker"],
+"internships":[{"company":"星辰科技有限公司","role":"后端开发实习生","duration":"2024.06-2024.09"}],
+"projects":[{"name":"RAG 智能问答系统","description":"基于 LangGraph 构建RAG问答链路，pgvector 向量检索。","tech":["LangGraph", "pgvector", "Celery"]},{"name":"电商全栈应用","description":"前端 Vue 组件化开发，TypeScript 类型约束。","tech":["Vue", "TypeScript"]}],
+"certificates":["CET-6", "软考中级"]
+}
+```

@@ -1,0 +1,13 @@
+# 后端构建上下文忽略：密钥与本地依赖绝不进入镜像
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+tests/

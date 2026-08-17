@@ -1,0 +1,498 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "category": "report",
+    "description": "最终报告评测输入（reports-contract 结构，纯合成样例）。eval_report_quality.py 以全局规则 + 每条 expected 断言校验；含 2 条故意构造的反例以证明规则引擎能捕获问题。",
+    "structure": "cases[] = {case_id, category:\"report\", description, report:{报告对象}, expected:{must_have_fields, must_not_contain, directions_min/max, gap_items_min, plan_tasks_min, suggestion}}"
+  },
+  "cases": [
+    {
+      "case_id": "report_001",
+      "category": "report",
+      "description": "Stage1 完整报告：画像 + 3 方向，无缺口（正向样例）",
+      "report": {
+        "stage": "stage1",
+        "portrait": {
+          "overall_score": 76,
+          "dimensions": {"technical": 78, "project": 72, "academic": 80, "soft_skill": 70, "industry_knowledge": 65},
+          "norm": {"cohort": "2026届 × 新一线 × 计算机类", "p25": 68, "p50": 76, "p75": 84},
+          "strengths": ["掌握 Python/Java/SQL 等后端核心技能", "有 1 段后端开发实习经历"],
+          "weaknesses": ["缺少高并发项目经验", "行业认知待提升"],
+          "confidence": "中"
+        },
+        "directions": [
+          {"job_title": "后端开发工程师", "match_score": 85, "salary": {"p25": 12000, "p50": 16000, "p75": 22000}, "salary_note": "2025Q4，智联招聘公开数据，置信度70%", "trend": "增长", "heat": "高", "data_source": "智联招聘 38 城报告", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "竞争激烈，建议突出项目深度", "certificates_bonus": "软考中级软件设计师为加分项", "recommend_reason": "技能匹配度高，实习经历对口", "data_grade": "B", "confidence_reasons": {"supporting": ["市场数据来源为公开招聘数据（B 级）", "方向匹配度 85，与画像技能/专业方向重合度高"], "concerns": ["薪资为市场近似值，可能含在职样本或口径差异"]}},
+          {"job_title": "数据分析师", "match_score": 74, "salary": {"p25": 10000, "p50": 14000, "p75": 19000}, "salary_note": "2025Q4，公开招聘数据", "trend": "增长", "heat": "高", "data_source": "智联招聘 38 城报告", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "入行门槛适中", "certificates_bonus": "CDA 证书为加分项", "recommend_reason": "SQL/数据分析技能可迁移", "data_grade": "B", "confidence_reasons": {"supporting": ["市场数据来源为公开招聘数据（B 级）", "方向匹配度 74"], "concerns": []}},
+          {"job_title": "测试开发工程师", "match_score": 66, "salary": {"p25": 10000, "p50": 13000, "p75": 18000}, "salary_note": "2025Q4，公开招聘数据", "trend": "稳定", "heat": "中", "data_source": "智联招聘 38 城报告", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "竞争适中", "certificates_bonus": "ISTQB 为加分项", "recommend_reason": "编程基础可支撑测试开发转型", "data_grade": "B", "confidence_reasons": {"supporting": ["市场数据来源为公开招聘数据（B 级）"], "concerns": ["薪资为市场近似值"]}}
+        ],
+        "gap_analysis": null,
+        "plan": null,
+        "suggestion": null,
+        "notes": [],
+        "confidence": {"analysis": "中", "market": "中"}
+      },
+      "expected": {
+        "must_have_fields": ["stage", "portrait.overall_score", "portrait.dimensions.technical", "directions", "notes", "confidence"],
+        "directions_min": 3,
+        "directions_max": 5,
+        "suggestion": "null"
+      }
+    },
+    {
+      "case_id": "report_002",
+      "category": "report",
+      "description": "Stage1 报告：LLM 组装路径，含 notes 标注兜底（正向样例）",
+      "report": {
+        "stage": "stage1",
+        "portrait": {
+          "overall_score": 68,
+          "dimensions": {"technical": 62, "project": 70, "academic": 66, "soft_skill": 74, "industry_knowledge": 60},
+          "norm": null,
+          "strengths": ["2 段产品实习经历", "用户研究与原型能力完整"],
+          "weaknesses": ["技术背景偏弱"],
+          "confidence": "低"
+        },
+        "directions": [
+          {"job_title": "产品经理", "match_score": 82, "salary": {"p25": 13000, "p50": 18000, "p75": 25000}, "salary_note": "2025Q4，公开招聘数据", "trend": "增长", "heat": "高", "data_source": "智联招聘 38 城报告", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "竞争激烈", "certificates_bonus": "PMP 为加分项", "recommend_reason": "实习经历与岗位高度对口", "data_grade": "B", "confidence_reasons": {"supporting": ["市场数据来源为公开招聘数据（B 级）", "方向匹配度 82"], "concerns": []}},
+          {"job_title": "产品运营", "match_score": 75, "salary": {"p25": 10000, "p50": 13000, "p75": 17000}, "salary_note": "2025Q4，公开招聘数据", "trend": "稳定", "heat": "中", "data_source": "智联招聘 38 城报告", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "竞争适中", "certificates_bonus": null, "recommend_reason": "运营实习可迁移", "data_grade": "B", "confidence_reasons": {"supporting": ["市场数据来源为公开招聘数据（B 级）"], "concerns": []}},
+          {"job_title": "用户研究专员", "match_score": 70, "salary": {"p25": 9000, "p50": 12000, "p75": 16000}, "salary_note": "数据较少，2025Q4 公开样本", "trend": "稳定", "heat": "低", "data_source": "公开招聘数据", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "岗位数量有限", "certificates_bonus": null, "recommend_reason": "用户研究功底匹配", "data_grade": "C", "confidence_reasons": {"supporting": ["市场数据来源已标注（基于公开数据）"], "concerns": ["市场数据不足，匹配判断基于画像与通用知识"]}}
+        ],
+        "gap_analysis": null,
+        "plan": null,
+        "suggestion": null,
+        "notes": ["该部分分析不完整（市场方向部分数据缺失，已用公开数据兜底）"],
+        "confidence": {"analysis": "低", "market": "低"}
+      },
+      "expected": {
+        "must_have_fields": ["stage", "portrait", "directions", "notes", "confidence"],
+        "directions_min": 3,
+        "directions_max": 5
+      }
+    },
+    {
+      "case_id": "report_003",
+      "category": "report",
+      "description": "Stage2 完整报告：差距 + 三阶段计划 + 建议（正向样例）",
+      "report": {
+        "stage": "stage2",
+        "portrait": {
+          "overall_score": 76,
+          "dimensions": {"technical": 78, "project": 72, "academic": 80, "soft_skill": 70, "industry_knowledge": 65},
+          "norm": null,
+          "strengths": ["掌握 Python/Java/SQL 等后端核心技能"],
+          "weaknesses": ["缺少高并发项目经验"],
+          "confidence": "中"
+        },
+        "directions": [
+          {"job_title": "后端开发工程师", "match_score": 85, "salary": {"p25": 12000, "p50": 16000, "p75": 22000}, "salary_note": "2025Q4，公开招聘数据", "trend": "增长", "heat": "高", "data_source": "智联招聘 38 城报告", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "竞争激烈", "certificates_bonus": null, "recommend_reason": "技能匹配度高", "data_grade": "B", "confidence_reasons": {"supporting": ["市场数据来源为公开招聘数据（B 级）"], "concerns": []}}
+        ],
+        "gap_analysis": {
+          "target_job": "后端开发工程师",
+          "items": [
+            {"skill": "高并发系统设计", "weight": 0.25, "level": "不具备", "jd_source": "JD 要求：高并发系统设计", "evidence": "用户技能列表不含「高并发系统设计」"},
+            {"skill": "Redis", "weight": 0.25, "level": "部分具备", "jd_source": "JD 要求：Redis", "evidence": "用户技能「redis」与「Redis」相关"},
+            {"skill": "消息队列", "weight": 0.25, "level": "不具备", "jd_source": "JD 要求：消息队列", "evidence": "用户技能列表不含「消息队列」"},
+            {"skill": "Docker", "weight": 0.25, "level": "已具备", "jd_source": "JD 要求：Docker", "evidence": "用户技能包含「Docker」"}
+          ],
+          "confidence_reasons": {"supporting": ["差距逐项对照目标岗位 JD 要求（4 项均有依据）"], "concerns": ["匹配判断基于简历技能列表，未列出的隐性技能可能未被计入"]}
+        },
+        "plan": {
+          "stages": {
+            "short": {"label": "短期（1 个月内）", "tasks_count": 2, "capability": "补齐高并发与缓存基础"},
+            "mid": {"label": "中期（1-3 个月）", "tasks_count": 2, "capability": "完成高并发项目落地"},
+            "long": {"label": "长期（3 个月以上）", "tasks_count": 2, "capability": "投递目标岗位并沉淀作品集"}
+          },
+          "tasks": [
+            {"name": "系统学习并掌握高并发系统设计基础", "resource": "慕课网专题课 + 官方文档精读", "duration": "2 周", "stage": "short", "sort_order": 1},
+            {"name": "搭建 Redis 缓存实战项目", "resource": "本地环境 + Redis 官方文档", "duration": "2 周", "stage": "short", "sort_order": 2},
+            {"name": "完成秒杀系统端到端项目", "resource": "开源项目拆解 + 技术博客", "duration": "4 周", "stage": "mid", "sort_order": 3},
+            {"name": "学习消息队列（Kafka）基础", "resource": "B 站专题课 + Kafka 官方文档", "duration": "3 周", "stage": "mid", "sort_order": 4},
+            {"name": "优化简历并投递后端岗位", "resource": "求职平台 + 简历修改服务", "duration": "2 周", "stage": "long", "sort_order": 5},
+            {"name": "沉淀 2 个可展示项目并复盘面试", "resource": "项目复盘模板 + 模拟面试", "duration": "4 周", "stage": "long", "sort_order": 6}
+          ]
+        },
+        "suggestion": {
+          "summary": "优先巩固高并发系统设计、消息队列等核心技能，围绕后端开发工程师完成项目落地后投递",
+          "short_term": "1 个月内：完成高并发系统设计、消息队列专项提升（2 项关键差距）+ 搭建 1 个后端开发工程师端到端项目",
+          "mid_long_term": "1-3 个月：补齐工程化与项目经验并深化项目产出；3 个月以上：投递后端开发工程师岗位并沉淀 2 个可展示项目",
+          "reasons": ["基于方向匹配度：后端开发工程师方向匹配 85 分", "基于画像评分：技术能力 78 分（五维最高）", "基于差距分析：2 项关键差距集中在高并发系统设计、消息队列，短期可闭环"],
+          "applicable_condition": "适用于以后端开发工程师为目标岗位的应届生；若计划转向其他方向，请参考对应方向建议"
+        },
+        "notes": [],
+        "confidence": {"analysis": "中", "market": "中", "executor": "中"}
+      },
+      "expected": {
+        "must_have_fields": ["stage", "gap_analysis.target_job", "gap_analysis.items", "plan.stages", "plan.tasks", "suggestion.reasons", "notes", "confidence"],
+        "gap_items_min": 1,
+        "plan_tasks_min": 5,
+        "suggestion": "dict"
+      }
+    },
+    {
+      "case_id": "report_004",
+      "category": "report",
+      "description": "Stage2 报告：无方向数据但差距/计划完整（suggestion 依赖方向，缺失为合法）",
+      "report": {
+        "stage": "stage2",
+        "gap_analysis": {
+          "target_job": "数据分析师",
+          "items": [
+            {"skill": "Spark", "weight": 0.33, "level": "不具备", "jd_source": "JD 要求：Spark", "evidence": "用户技能列表不含「Spark」"},
+            {"skill": "Hive", "weight": 0.33, "level": "不具备", "jd_source": "JD 要求：Hive", "evidence": "用户技能列表不含「Hive」"},
+            {"skill": "SQL", "weight": 0.34, "level": "已具备", "jd_source": "JD 要求：SQL", "evidence": "用户技能包含「SQL」"}
+          ],
+          "confidence_reasons": {"supporting": ["差距逐项对照目标岗位 JD 要求（3 项均有依据）"], "concerns": []}
+        },
+        "plan": {
+          "stages": {
+            "short": {"label": "短期（1 个月内）", "tasks_count": 2},
+            "mid": {"label": "中期（1-3 个月）", "tasks_count": 2},
+            "long": {"label": "长期（3 个月以上）", "tasks_count": 2}
+          },
+          "tasks": [
+            {"name": "系统学习 Spark 基础", "resource": "官方文档 + 专题课", "duration": "2 周", "stage": "short", "sort_order": 1},
+            {"name": "搭建 Hive 数仓练习环境", "resource": "本地环境 + 教程", "duration": "2 周", "stage": "short", "sort_order": 2},
+            {"name": "完成用户画像数仓项目", "resource": "公开数据集", "duration": "4 周", "stage": "mid", "sort_order": 3},
+            {"name": "巩固 SQL 窗口函数与优化", "resource": "LeetCode + 书籍", "duration": "3 周", "stage": "mid", "sort_order": 4},
+            {"name": "优化简历投递数据分析岗位", "resource": "求职平台", "duration": "2 周", "stage": "long", "sort_order": 5},
+            {"name": "复盘面试并沉淀项目产出", "resource": "模拟面试", "duration": "4 周", "stage": "long", "sort_order": 6}
+          ]
+        },
+        "suggestion": null,
+        "notes": [],
+        "confidence": {"executor": "中"}
+      },
+      "expected": {
+        "must_have_fields": ["stage", "gap_analysis.target_job", "plan.tasks"],
+        "gap_items_min": 3,
+        "plan_tasks_min": 5,
+        "suggestion": "null"
+      }
+    },
+    {
+      "case_id": "report_005",
+      "category": "report",
+      "description": "Stage1 报告：三方向但方向缺 match_score 且含占位文案（反例，应被捕获）",
+      "report": {
+        "stage": "stage1",
+        "portrait": {
+          "overall_score": 72,
+          "dimensions": {"technical": 75, "project": 70, "academic": 74, "soft_skill": 68, "industry_knowledge": 64},
+          "strengths": ["技能清单完整"],
+          "weaknesses": ["待补充"],
+          "confidence": "中"
+        },
+        "directions": [
+          {"job_title": "前端开发工程师", "match_score": null, "salary": {"p25": 11000, "p50": 15000, "p75": 20000}, "salary_note": "公开招聘数据", "trend": "增长", "heat": "高", "data_source": "智联招聘", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "竞争激烈", "certificates_bonus": null, "recommend_reason": "xxx", "data_grade": "B", "confidence_reasons": {"supporting": ["来源已标注"], "concerns": []}},
+          {"job_title": "全栈开发工程师", "match_score": 78, "salary": {"p25": 12000, "p50": 16000, "p75": 21000}, "salary_note": "公开招聘数据", "trend": "增长", "heat": "高", "data_source": "智联招聘", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "竞争激烈", "certificates_bonus": null, "recommend_reason": "技能覆盖面广", "data_grade": "B", "confidence_reasons": {"supporting": ["来源已标注"], "concerns": []}},
+          {"job_title": "Node.js 开发工程师", "match_score": 70, "salary": {"p25": 10000, "p50": 14000, "p75": 19000}, "salary_note": "公开招聘数据", "trend": "稳定", "heat": "中", "data_source": "智联招聘", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "竞争适中", "certificates_bonus": null, "recommend_reason": "技术栈匹配", "data_grade": "B", "confidence_reasons": {"supporting": ["来源已标注"], "concerns": []}}
+        ],
+        "gap_analysis": null,
+        "plan": null,
+        "suggestion": null,
+        "notes": [],
+        "confidence": {"analysis": "中", "market": "中"}
+      },
+      "expected": {
+        "must_have_fields": ["stage", "portrait", "directions", "notes", "confidence"],
+        "directions_min": 3,
+        "directions_max": 5,
+        "must_not_contain": ["待补充", "xxx"]
+      }
+    },
+    {
+      "case_id": "report_006",
+      "category": "report",
+      "description": "Stage2 报告：gap item level 非法、plan.tasks 为空、suggestion 缺失（反例，应被捕获）",
+      "report": {
+        "stage": "stage2",
+        "gap_analysis": {
+          "target_job": "算法工程师",
+          "items": [
+            {"skill": "PyTorch", "weight": 0.5, "level": "熟练", "jd_source": "JD 要求：PyTorch", "evidence": "用户技能包含 PyTorch"},
+            {"skill": "模型部署", "weight": 0.5, "level": "不具备", "jd_source": "JD 要求：模型部署", "evidence": "用户技能列表不含模型部署"}
+          ]
+        },
+        "plan": {"stages": {}, "tasks": []},
+        "suggestion": null,
+        "notes": [],
+        "confidence": {}
+      },
+      "expected": {
+        "must_have_fields": ["stage", "gap_analysis.target_job", "plan.tasks"],
+        "gap_items_min": 2,
+        "plan_tasks_min": 5,
+        "suggestion": "dict"
+      }
+    },
+    {
+      "case_id": "report_007",
+      "category": "report",
+      "description": "Stage1 空报告（边界：报告为空对象，应降级判定而非崩溃）",
+      "report": {},
+      "expected": {
+        "must_have_fields": ["stage", "portrait", "directions", "notes", "confidence"]
+      }
+    },
+    {
+      "case_id": "report_008",
+      "category": "report",
+      "description": "Stage1 报告：directions 为 2 条（低于契约 3-5，per-case 期望触发）",
+      "report": {
+        "stage": "stage1",
+        "portrait": {
+          "overall_score": 65,
+          "dimensions": {"technical": 60, "project": 66, "academic": 70, "soft_skill": 64, "industry_knowledge": 58},
+          "norm": null,
+          "strengths": ["有 1 段实习经历"],
+          "weaknesses": ["项目经历不足"],
+          "confidence": "低"
+        },
+        "directions": [
+          {"job_title": "测试工程师", "match_score": 72, "salary": {"p25": 9000, "p50": 12000, "p75": 16000}, "salary_note": "公开招聘数据", "trend": "稳定", "heat": "中", "data_source": "智联招聘", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "竞争适中", "certificates_bonus": null, "recommend_reason": "编程基础可迁移", "data_grade": "B", "confidence_reasons": {"supporting": ["来源已标注"], "concerns": []}},
+          {"job_title": "运维工程师", "match_score": 68, "salary": {"p25": 9000, "p50": 12000, "p75": 17000}, "salary_note": "公开招聘数据", "trend": "稳定", "heat": "中", "data_source": "智联招聘", "education_requirement": "本科及以上", "education_match": "符合", "competition_note": "竞争适中", "certificates_bonus": null, "recommend_reason": "Linux 基础匹配", "data_grade": "B", "confidence_reasons": {"supporting": ["来源已标注"], "concerns": []}}
+        ],
+        "gap_analysis": null,
+        "plan": null,
+        "suggestion": null,
+        "notes": [],
+        "confidence": {"analysis": "低", "market": "低"}
+      },
+      "expected": {
+        "directions_min": 3,
+        "directions_max": 5,
+        "suggestion": "null"
+      }
+    },
+    {
+      "case_id": "report_101",
+      "category": "report",
+      "description": "金融-量化研究员 Stage2：会 pandas 判 Python 部分具备而非不具备；required_level 分级；计划针对性无死模板（跨行业回归）",
+      "report": {
+        "stage": "stage2",
+        "gap_analysis": {
+          "target_job": "量化研究员",
+          "items": [
+            {"skill": "Python", "weight": 0.4, "required_level": "core", "level": "部分具备", "jd_source": "JD 要求：熟练使用 Python 进行策略回测", "evidence": "用户技能包含 pandas/NumPy，Python 相关库经验丰富"},
+            {"skill": "pandas", "weight": 0.4, "required_level": "core", "level": "已具备", "jd_source": "JD 要求：掌握 pandas 数据处理", "evidence": "用户技能包含 pandas，项目使用 pandas 完成因子回测"},
+            {"skill": "C++", "weight": 0.2, "required_level": "nice-to-have", "level": "不具备", "jd_source": "JD 要求：熟悉 C++ 加分", "evidence": "用户技能列表不含 C++"}
+          ],
+          "confidence_reasons": {"supporting": ["差距逐项对照量化研究员 JD 要求（3 项均有依据）"], "concerns": []}
+        },
+        "plan": {
+          "stages": {
+            "short": {"label": "短期（1 个月内）", "tasks_count": 2},
+            "mid": {"label": "中期（1-3 个月）", "tasks_count": 2},
+            "long": {"label": "长期（3 个月以上）", "tasks_count": 2}
+          },
+          "tasks": [
+            {"name": "完成多因子选股回测框架优化（pandas/NumPy 性能调优）", "resource": "聚宽平台文档 + 《Python 金融大数据分析》第 5-7 章", "duration": "2 周", "stage": "short", "sort_order": 1},
+            {"name": "补充 C++ 高频交易核心模块基础", "resource": "《C++ Primer》第 1-8 章 + 量化私募公开课", "duration": "3 周", "stage": "short", "sort_order": 2},
+            {"name": "复现 3 个经典量化因子并回测验证", "resource": "优矿社区因子库 + 国泰安数据", "duration": "4 周", "stage": "mid", "sort_order": 3},
+            {"name": "完成 1 个端到端实盘模拟策略", "resource": "聚宽模拟盘 + 券商 API 文档", "duration": "4 周", "stage": "mid", "sort_order": 4},
+            {"name": "优化简历并投递量化研究岗位", "resource": "求职平台 + 简历修改服务", "duration": "2 周", "stage": "long", "sort_order": 5},
+            {"name": "沉淀量化策略作品集并复盘面试", "resource": "策略文档模板 + 模拟面试", "duration": "4 周", "stage": "long", "sort_order": 6}
+          ]
+        },
+        "suggestion": {
+          "summary": "优先巩固 pandas 数据处理与回测框架能力，围绕量化研究员完成策略落地后投递",
+          "short_term": "1 个月内：完成回测框架优化与 C++ 基础补充（2 项关键差距）",
+          "mid_long_term": "1-3 个月：复现经典因子并完成端到端模拟策略；3 个月以上：投递量化研究岗位",
+          "reasons": ["基于差距分析：Python 数据处理为 core 技能，短期可闭环", "基于画像：金融工程专业 + 量化研究实习对口"],
+          "applicable_condition": "适用于以量化研究员为目标岗位的金融工程背景候选人"
+        },
+        "notes": [],
+        "confidence": {"analysis": "中", "market": "中", "executor": "中"}
+      },
+      "expected": {
+        "must_have_fields": ["stage", "gap_analysis.target_job", "gap_analysis.items", "plan.tasks", "suggestion.reasons"],
+        "must_not_contain": ["系统学习并掌握", "xxx"],
+        "gap_items_min": 3,
+        "plan_tasks_min": 5,
+        "suggestion": "dict"
+      }
+    },
+    {
+      "case_id": "report_102",
+      "category": "report",
+      "description": "医疗-医学影像算法 Stage2：PyTorch/OpenCV 技能判断合理；计划针对性（跨行业回归）",
+      "report": {
+        "stage": "stage2",
+        "gap_analysis": {
+          "target_job": "医学影像算法工程师",
+          "items": [
+            {"skill": "PyTorch", "weight": 0.4, "required_level": "core", "level": "已具备", "jd_source": "JD 要求：熟练使用 PyTorch 训练模型", "evidence": "用户技能包含 PyTorch，肺结节检测项目使用"},
+            {"skill": "OpenCV", "weight": 0.3, "required_level": "core", "level": "部分具备", "jd_source": "JD 要求：熟悉 OpenCV 图像处理", "evidence": "用户技能包含 OpenCV，CT 影像预处理使用"},
+            {"skill": "DICOM 解析", "weight": 0.3, "required_level": "nice-to-have", "level": "部分具备", "jd_source": "JD 要求：了解 DICOM 格式", "evidence": "项目使用 DICOM 数据，基础了解待深化"}
+          ],
+          "confidence_reasons": {"supporting": ["差距逐项对照医学影像算法 JD 要求（3 项均有依据）"], "concerns": []}
+        },
+        "plan": {
+          "stages": {
+            "short": {"label": "短期（1 个月内）", "tasks_count": 2},
+            "mid": {"label": "中期（1-3 个月）", "tasks_count": 2},
+            "long": {"label": "长期（3 个月以上）", "tasks_count": 2}
+          },
+          "tasks": [
+            {"name": "深入 DICOM 标准与医学影像预处理实战", "resource": "DICOM 官方标准文档 + 公开影像数据集", "duration": "2 周", "stage": "short", "sort_order": 1},
+            {"name": "优化肺结节检测模型（PyTorch 数据增强与调参）", "resource": "Kaggle 肺结节竞赛 + PyTorch 官方教程", "duration": "3 周", "stage": "short", "sort_order": 2},
+            {"name": "完成医学影像分割端到端项目", "resource": "nnU-Net 开源框架 + 公开分割数据集", "duration": "4 周", "stage": "mid", "sort_order": 3},
+            {"name": "整理影像处理工具链（OpenCV + SimpleITK）", "resource": "SimpleITK 文档 + 医学影像社区", "duration": "2 周", "stage": "mid", "sort_order": 4},
+            {"name": "优化简历并投递医学影像算法岗位", "resource": "求职平台 + 简历修改服务", "duration": "2 周", "stage": "long", "sort_order": 5},
+            {"name": "沉淀影像项目作品集并复盘面试", "resource": "项目复盘模板 + 模拟面试", "duration": "4 周", "stage": "long", "sort_order": 6}
+          ]
+        },
+        "suggestion": {
+          "summary": "以肺结节检测项目为主线，补齐 DICOM 标准化能力后投递医学影像算法岗位",
+          "short_term": "1 个月内：完成 DICOM 与预处理深化 + 模型优化（2 项关键差距）",
+          "mid_long_term": "1-3 个月：完成影像分割端到端项目；3 个月以上：投递目标岗位",
+          "reasons": ["基于差距分析：DICOM 解析为当前最短路径", "基于画像：生物医学工程专业 + 三甲医院实习对口"],
+          "applicable_condition": "适用于以医学影像算法为目标岗位的医学工程背景候选人"
+        },
+        "notes": [],
+        "confidence": {"analysis": "中", "market": "中", "executor": "中"}
+      },
+      "expected": {
+        "must_have_fields": ["stage", "gap_analysis.target_job", "plan.tasks", "suggestion.reasons"],
+        "must_not_contain": ["系统学习并掌握"],
+        "gap_items_min": 3,
+        "plan_tasks_min": 5,
+        "suggestion": "dict"
+      }
+    },
+    {
+      "case_id": "report_103",
+      "category": "report",
+      "description": "机械-结构设计 Stage2：SolidWorks/ANSYS 技能判断合理；required_level 分级（跨行业回归）",
+      "report": {
+        "stage": "stage2",
+        "gap_analysis": {
+          "target_job": "结构设计工程师",
+          "items": [
+            {"skill": "SolidWorks", "weight": 0.4, "required_level": "core", "level": "已具备", "jd_source": "JD 要求：熟练使用 SolidWorks 三维建模", "evidence": "用户技能包含 SolidWorks，电池包结构建模使用"},
+            {"skill": "ANSYS 有限元分析", "weight": 0.4, "required_level": "core", "level": "部分具备", "jd_source": "JD 要求：掌握 ANSYS 进行强度校核", "evidence": "用户技能包含 ANSYS，电池包有限元分析使用，深度待提升"},
+            {"skill": "公差与 GD&T", "weight": 0.2, "required_level": "nice-to-have", "level": "不具备", "jd_source": "JD 要求：了解 GD&T 加分", "evidence": "用户技能列表不含公差与 GD&T"}
+          ],
+          "confidence_reasons": {"supporting": ["差距逐项对照结构设计 JD 要求（3 项均有依据）"], "concerns": []}
+        },
+        "plan": {
+          "stages": {
+            "short": {"label": "短期（1 个月内）", "tasks_count": 2},
+            "mid": {"label": "中期（1-3 个月）", "tasks_count": 2},
+            "long": {"label": "长期（3 个月以上）", "tasks_count": 2}
+          },
+          "tasks": [
+            {"name": "完成 ANSYS 强度校核专项练习（静力/疲劳分析）", "resource": "ANSYS 官方教程 + 《有限元分析基础》", "duration": "3 周", "stage": "short", "sort_order": 1},
+            {"name": "学习 GD&T 公差标注规范", "resource": "《几何公差》国家标准 + 机械设计社区", "duration": "2 周", "stage": "short", "sort_order": 2},
+            {"name": "完成电池包结构优化设计项目（SolidWorks + ANSYS）", "resource": "企业实际案例 + 优化设计方法论", "duration": "4 周", "stage": "mid", "sort_order": 3},
+            {"name": "整理结构设计仿真作品集", "resource": "设计报告模板 + 仿真结果归档", "duration": "2 周", "stage": "mid", "sort_order": 4},
+            {"name": "优化简历并投递结构设计岗位", "resource": "求职平台 + 简历修改服务", "duration": "2 周", "stage": "long", "sort_order": 5},
+            {"name": "复盘面试并沉淀仿真项目产出", "resource": "模拟面试 + 项目复盘", "duration": "4 周", "stage": "long", "sort_order": 6}
+          ]
+        },
+        "suggestion": {
+          "summary": "以 ANSYS 强度校核深化为主线，补齐 GD&T 加分项后投递结构设计岗位",
+          "short_term": "1 个月内：完成 ANSYS 专项练习与 GD&T 学习（2 项关键差距）",
+          "mid_long_term": "1-3 个月：完成电池包结构优化项目；3 个月以上：投递目标岗位",
+          "reasons": ["基于差距分析：ANSYS 有限元为 core 技能", "基于画像：机械设计专业 + 结构设计实习对口"],
+          "applicable_condition": "适用于以结构设计为目标岗位的机械工程背景候选人"
+        },
+        "notes": [],
+        "confidence": {"analysis": "中", "market": "中", "executor": "中"}
+      },
+      "expected": {
+        "must_have_fields": ["stage", "gap_analysis.target_job", "plan.tasks", "suggestion.reasons"],
+        "must_not_contain": ["系统学习并掌握"],
+        "gap_items_min": 3,
+        "plan_tasks_min": 5,
+        "suggestion": "dict"
+      }
+    },
+    {
+      "case_id": "report_104",
+      "category": "report",
+      "description": "教育-课程设计 Stage2：教学设计/课件制作技能判断合理（跨行业回归）",
+      "report": {
+        "stage": "stage2",
+        "gap_analysis": {
+          "target_job": "课程设计师",
+          "items": [
+            {"skill": "教学设计", "weight": 0.4, "required_level": "core", "level": "已具备", "jd_source": "JD 要求：掌握教学设计方法论", "evidence": "用户技能包含教学设计，微课体系设计使用"},
+            {"skill": "课件制作", "weight": 0.4, "required_level": "core", "level": "已具备", "jd_source": "JD 要求：熟练制作多媒体课件", "evidence": "用户技能包含课件制作"},
+            {"skill": "Python 学情分析", "weight": 0.2, "required_level": "nice-to-have", "level": "部分具备", "jd_source": "JD 要求：会用 Python 做学情数据分析加分", "evidence": "用户技能包含 Python 与数据分析，可迁移到学情分析"}
+          ],
+          "confidence_reasons": {"supporting": ["差距逐项对照课程设计 JD 要求（3 项均有依据）"], "concerns": []}
+        },
+        "plan": {
+          "stages": {
+            "short": {"label": "短期（1 个月内）", "tasks_count": 2},
+            "mid": {"label": "中期（1-3 个月）", "tasks_count": 2},
+            "long": {"label": "长期（3 个月以上）", "tasks_count": 2}
+          },
+          "tasks": [
+            {"name": "完成学情数据分析实战（Python 数据清洗与可视化）", "resource": "pandas 官方文档 + 教育数据公开集", "duration": "2 周", "stage": "short", "sort_order": 1},
+            {"name": "学习 ADDIE 教学设计模型并输出案例", "resource": "《教学设计原理》+ 在线教育行业案例库", "duration": "2 周", "stage": "short", "sort_order": 2},
+            {"name": "完成 1 门完整微课设计并产出课件", "resource": "课件制作工具 + 学科专家访谈", "duration": "4 周", "stage": "mid", "sort_order": 3},
+            {"name": "基于学情数据迭代课程设计", "resource": "学习分析工具 + 小范围试讲", "duration": "3 周", "stage": "mid", "sort_order": 4},
+            {"name": "优化简历并投递课程设计岗位", "resource": "求职平台 + 简历修改服务", "duration": "2 周", "stage": "long", "sort_order": 5},
+            {"name": "沉淀课程设计作品集并复盘面试", "resource": "作品集模板 + 模拟面试", "duration": "4 周", "stage": "long", "sort_order": 6}
+          ]
+        },
+        "suggestion": {
+          "summary": "以学情数据分析能力补齐为主线，围绕课程设计师完成微课项目后投递",
+          "short_term": "1 个月内：完成 Python 学情分析实战与教学设计模型学习",
+          "mid_long_term": "1-3 个月：完成微课设计与数据迭代；3 个月以上：投递目标岗位",
+          "reasons": ["基于差距分析：学情数据分析为可迁移加分项", "基于画像：教育学专业 + 课程设计实习对口"],
+          "applicable_condition": "适用于以课程设计师为目标岗位的教育学背景候选人"
+        },
+        "notes": [],
+        "confidence": {"analysis": "中", "market": "中", "executor": "中"}
+      },
+      "expected": {
+        "must_have_fields": ["stage", "gap_analysis.target_job", "plan.tasks", "suggestion.reasons"],
+        "must_not_contain": ["系统学习并掌握", "xxx"],
+        "gap_items_min": 3,
+        "plan_tasks_min": 5,
+        "suggestion": "dict"
+      }
+    },
+    {
+      "case_id": "report_105",
+      "category": "report",
+      "description": "金融-量化研究员 Stage2 反例：技能判断错误（会 pandas 判 Python 不具备）+ 死模板「系统学习并掌握 Python 基础」（应被捕获）",
+      "report": {
+        "stage": "stage2",
+        "gap_analysis": {
+          "target_job": "量化研究员",
+          "items": [
+            {"skill": "Python", "weight": 0.5, "required_level": "core", "level": "不具备", "jd_source": "JD 要求：熟练使用 Python", "evidence": "用户技能列表不含 Python"},
+            {"skill": "pandas", "weight": 0.5, "required_level": "core", "level": "已具备", "jd_source": "JD 要求：掌握 pandas", "evidence": "用户技能包含 pandas"}
+          ],
+          "confidence_reasons": {"supporting": ["差距逐项对照 JD 要求"], "concerns": []}
+        },
+        "plan": {
+          "stages": {
+            "short": {"label": "短期（1 个月内）", "tasks_count": 1},
+            "mid": {"label": "中期（1-3 个月）", "tasks_count": 1},
+            "long": {"label": "长期（3 个月以上）", "tasks_count": 1}
+          },
+          "tasks": [
+            {"name": "系统学习并掌握 Python 基础", "resource": "相关教程", "duration": "2 周", "stage": "short", "sort_order": 1},
+            {"name": "多学习 pandas 数据处理", "resource": "相关教程", "duration": "2 周", "stage": "mid", "sort_order": 2},
+            {"name": "优化简历并投递岗位", "resource": "求职平台", "duration": "2 周", "stage": "long", "sort_order": 3}
+          ]
+        },
+        "suggestion": null,
+        "notes": [],
+        "confidence": {"executor": "中"}
+      },
+      "expected": {
+        "must_have_fields": ["stage", "gap_analysis.target_job", "plan.tasks"],
+        "must_not_contain": ["系统学习并掌握", "多学习", "相关教程"],
+        "gap_items_min": 2,
+        "plan_tasks_min": 5,
+        "suggestion": "any"
+      }
+    }
+  ]
+}

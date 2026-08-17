@@ -1,0 +1,95 @@
+{
+  "resume1_backend_clean": {
+    "name": "张明远",
+    "school": "华岚理工大学",
+    "major": "计算机科学与技术",
+    "education": "本科",
+    "graduation_year": "2025",
+    "gpa": "3.7",
+    "skills": [
+      "Python",
+      "Java",
+      "SQL",
+      "Git",
+      "Docker",
+      "FastAPI",
+      "LangGraph",
+      "pgvector",
+      "Celery",
+      "Vue",
+      "TypeScript"
+    ],
+    "internships": [
+      {
+        "company": "星辰科技有限公司",
+        "role": "后端开发实习生"
+      }
+    ],
+    "projects": [
+      "RAG 智能问答系统",
+      "电商全栈应用"
+    ],
+    "certificates": [
+      "CET-6",
+      "软考中级"
+    ]
+  },
+  "resume2_data_scan": {
+    "name": "陈雨桐",
+    "school": "南岳财经大学",
+    "major": "数据科学与大数据技术",
+    "education": "硕士",
+    "graduation_year": "2026",
+    "gpa": "3.9",
+    "skills": [
+      "Python",
+      "SQL",
+      "Tableau",
+      "Excel",
+      "Spark",
+      "pandas",
+      "NumPy"
+    ],
+    "internships": [
+      {
+        "company": "蓝海数据服务有限公司",
+        "role": "数据分析实习生"
+      }
+    ],
+    "projects": [
+      "用户画像分析"
+    ],
+    "certificates": [
+      "数据分析师（CDA）"
+    ]
+  },
+  "resume3_frontend_complex": {
+    "name": "赵子轩",
+    "school": "东湖科技大学",
+    "major": "软件工程",
+    "education": "本科",
+    "graduation_year": "2025",
+    "gpa": null,
+    "skills": [
+      "JavaScript",
+      "TypeScript",
+      "Vue",
+      "React",
+      "CSS",
+      "ECharts"
+    ],
+    "internships": [
+      {
+        "company": "云帆网络科技有限公司",
+        "role": "前端开发实习生"
+      }
+    ],
+    "projects": [
+      "数据可视化平台",
+      "移动端 H5 应用"
+    ],
+    "certificates": [
+      "CET-4"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+# E501：不强制存量代码行长；B008：FastAPI Depends() 在默认参数（框架惯用法）
+# RUF001/002/003：ambiguous-unicode 检查不适用于中文文案代码库（全角标点为刻意使用）
+ignore = ["E501", "B008", "RUF001", "RUF002", "RUF003"]
+
+# 存量 app 代码的既有风格项（本任务禁止修改 app，规则不阻碍存量；tests 侧不豁免）
+[tool.ruff.lint.per-file-ignores]
+# alembic 迁移/env 为工具链生成+历史迁移：不追求项目 lint 风格（社区惯例，避免破坏迁移链）。
+# 仅豁免实际出现的规则，E/F 等严重规则仍守护该目录
+"alembic/**" = [
+  "I001",
+  "UP007",
+  "UP035",
+  "W291",
+  "W292",
+]
+"app/**" = [
+  "B007",
+  "B905",
+  "BLE001",
+  "C401",
+  "",
+  "",
+  "I001",
+  "RUF005",
+  "RUF012",
+  "RUF022",
+  "RUF100",
+  "SIM103",
+  "SIM300",
+  "UP009",
+  "UP017",
+  "UP035",
+  "UP041",
+  "UP046",
+  "W291",
+  "W292",
+]

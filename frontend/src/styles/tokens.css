@@ -1,0 +1,106 @@
+/* ============================================================
+   CareerAI Design Tokens
+   来源：docs/design-system.md （v1.0 冻结）
+   禁止自行发挥颜色 / 间距——所有视觉值以本文件为准
+   ============================================================ */
+:root {
+  /* 颜色：品牌与主操作 */
+  --color-primary-600: #2C4A6E;
+  --color-primary-700: #233B58;
+  --color-primary-800: #1B2E46;
+  --color-primary-500: #3A5F8A;
+  --color-primary-100: #E3EBF3;
+  --color-primary-050: #F2F6FA;
+
+  /* 颜色：强调（评分 / 关键数字） */
+  --color-accent-500: #C9A24B;
+  --color-accent-600: #A8762F;
+  --color-accent-100: #F6EBD8;
+
+  /* 颜色：语义 */
+  --color-success-600: #4E7A5B;
+  --color-success-100: #E4EFE6;
+  --color-warning-600: #B9762E;
+  --color-warning-100: #F7EBDD;
+  --color-danger-600: #B24D3E;
+  --color-danger-100: #F6E4E0;
+  --color-info-600: #3D6B99;
+  --color-info-100: #E4EDF5;
+
+  /* 颜色：中性 */
+  --color-bg-canvas: #FAF7F2;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-subtle: #F3EEE6;
+  --color-text-primary: #232A33;
+  --color-text-secondary: #4A5560;
+  --color-text-tertiary: #8A94A0;
+  --color-text-disabled: #B9C0C8;
+  --color-border-default: #E2DCD2;
+  --color-border-strong: #D2C9BC;
+  --color-divider: #EDE7DE;
+  --color-overlay: rgba(35, 42, 51, 0.45);
+  --color-focus-ring: #3D6B99;
+
+  /* 字体 */
+  --font-family-sans: "HarmonyOS Sans SC", "MiSans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-numeric-feature: "tnum" 1;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+  --font-size-4xl: 40px;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 间距 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* 圆角 */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* 阴影 */
+  --shadow-0: none;
+  --shadow-1: 0 1px 2px rgba(35, 42, 51, 0.05), 0 1px 3px rgba(35, 42, 51, 0.07);
+  --shadow-2: 0 4px 12px rgba(35, 42, 51, 0.1);
+  --shadow-3: 0 12px 32px rgba(35, 42, 51, 0.16);
+
+  /* 断点与容器 */
+  --bp-mobile: 768px;
+  --bp-tablet: 1024px;
+  --container-max: 1200px;
+  --container-read: 960px;
+  --grid-gap-desktop: 24px;
+  --grid-gap-mobile: 16px;
+
+  /* 语义别名 */
+  --color-primary: var(--color-primary-600);
+  --color-primary-hover: var(--color-primary-700);
+  --color-primary-active: var(--color-primary-800);
+  --color-accent: var(--color-accent-500);
+  --color-bg: var(--color-bg-canvas);
+  --color-surface: var(--color-bg-surface);
+  --color-text: var(--color-text-primary);
+  --color-border: var(--color-border-default);
+  --font-family: var(--font-family-sans);
+  --font-size-body: var(--font-size-sm);
+  --space-card: var(--space-4);
+  --radius-card: var(--radius-md);
+  --shadow-card: var(--shadow-0);
+  --shadow-card-hover: var(--shadow-1);
+  --shadow-modal: var(--shadow-3);
+}

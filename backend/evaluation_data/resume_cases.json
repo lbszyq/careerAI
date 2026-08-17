@@ -1,0 +1,202 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "category": "resume",
+    "description": "简历原文评测输入（真实风格、纯合成样例、不含任何真实用户隐私数据）。预留简历解析评估（范围外脚本未覆盖，随后续评估卡启用）。",
+    "structure": "cases[] = {case_id, category:\"resume\", description, input:{resume_text}, expected:{must_have_fields, expected_name, expected_education, expected_skills, must_contain_text, must_not_contain_text}}"
+  },
+  "cases": [
+    {
+      "case_id": "resume_001",
+      "category": "resume",
+      "description": "应届本科后端方向简历：姓名/学历/专业/GPA/技能/实习/项目齐全",
+      "input": {
+        "resume_text": "姓名：林晓\n学校：华东理工大学\n专业：软件工程\n学历：本科\n毕业年份：2026\nGPA：3.6/4.0\n技能：Python、Java、SQL、MySQL、Docker、Git\n实习：2025.06-2025.09 上海某互联网公司 后端开发实习生\n项目：2024.10-2025.02 校园二手交易平台（Flask + MySQL）\n证书：CET-6、软考中级软件设计师"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "graduation_year", "skills", "internships", "projects"],
+        "expected_name": "林晓",
+        "expected_education": "本科",
+        "expected_skills": ["python", "java", "sql", "mysql", "docker", "git"],
+        "must_contain_text": ["后端开发实习生", "校园二手交易平台"],
+        "must_not_contain_text": ["TODO", "占位"]
+      }
+    },
+    {
+      "case_id": "resume_002",
+      "category": "resume",
+      "description": "数据方向硕士简历：含多个数据分析项目",
+      "input": {
+        "resume_text": "姓名：陈晨\n学校：中山大学\n专业：统计学\n学历：硕士\n毕业年份：2026\nGPA：3.8\n技能：Python、R、SQL、Tableau、Power BI、机器学习、数据挖掘\n项目：2024.03-2024.08 电商用户流失预测（XGBoost，AUC 0.86）\n项目：2024.09-2025.01 城市交通拥堵指数分析（Tableau 可视化）\n证书：CDA 数据分析师、CET-6"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "graduation_year", "skills", "projects"],
+        "expected_name": "陈晨",
+        "expected_education": "硕士",
+        "expected_skills": ["python", "r", "sql", "tableau", "power bi", "机器学习", "数据挖掘"],
+        "must_contain_text": ["电商用户流失预测"],
+        "must_not_contain_text": ["电话：1", "邮箱："]
+      }
+    },
+    {
+      "case_id": "resume_003",
+      "category": "resume",
+      "description": "产品经理方向简历：多段实习经历",
+      "input": {
+        "resume_text": "姓名：周亦\n学校：武汉大学\n专业：信息管理与信息系统\n学历：本科\n毕业年份：2025\n技能：Axure、Figma、产品设计、用户研究、项目管理、SQL\n实习：2024.07-2024.10 字节跳动 产品实习生\n实习：2025.01-2025.04 美团 产品运营实习生\n证书：PMP（备考中）"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "graduation_year", "skills", "internships"],
+        "expected_name": "周亦",
+        "expected_education": "本科",
+        "expected_skills": ["axure", "figma", "产品设计", "用户研究", "项目管理", "sql"],
+        "must_contain_text": ["产品实习生", "产品运营实习生"],
+        "must_not_contain_text": ["TODO"]
+      }
+    },
+    {
+      "case_id": "resume_004",
+      "category": "resume",
+      "description": "新媒体运营方向简历：内容运营经验",
+      "input": {
+        "resume_text": "姓名：苏芮\n学校：四川大学\n专业：新闻学\n学历：本科\n毕业年份：2026\n技能：新媒体运营、内容运营、文案策划、PS、剪映、微信公众号\n实习：2025.03-2025.08 成都某 MCN 机构 新媒体运营实习生\n项目：2024.06-2024.12 个人公众号运营（粉丝 2w）\n证书：新媒体运营师（初级）"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "graduation_year", "skills", "internships", "projects"],
+        "expected_name": "苏芮",
+        "expected_education": "本科",
+        "expected_skills": ["新媒体运营", "内容运营", "文案策划", "ps"],
+        "must_contain_text": ["MCN", "公众号"],
+        "must_not_contain_text": ["电话"]
+      }
+    },
+    {
+      "case_id": "resume_005",
+      "category": "resume",
+      "description": "前端方向简历：React 项目",
+      "input": {
+        "resume_text": "姓名：郑铭\n学校：杭州电子科技大学\n专业：计算机科学与技术\n学历：本科\n毕业年份：2025\nGPA：3.4\n技能：JavaScript、TypeScript、React、Vue、Node.js、HTML、CSS\n项目：2024.04-2024.10 企业官网重构（React + Vite）\n实习：2025.01-2025.05 杭州某科技公司 前端开发实习生\n证书：CET-4"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "graduation_year", "skills", "projects", "internships"],
+        "expected_name": "郑铭",
+        "expected_education": "本科",
+        "expected_skills": ["javascript", "typescript", "react", "vue", "node.js", "html", "css"],
+        "must_contain_text": ["React + Vite"],
+        "must_not_contain_text": ["占位"]
+      }
+    },
+    {
+      "case_id": "resume_006",
+      "category": "resume",
+      "description": "游戏策划方向简历：游戏行业项目",
+      "input": {
+        "resume_text": "姓名：何昱\n学校：中国传媒大学\n专业：数字媒体艺术\n学历：本科\n毕业年份：2026\n技能：游戏策划、关卡设计、数值策划、Unity、Axure\n项目：2024.09-2025.01 独立解谜游戏《镜中迷宫》策划（Unity 原型）\n实习：2025.03-2025.07 上海某游戏公司 系统策划实习生"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "skills", "projects", "internships"],
+        "expected_name": "何昱",
+        "expected_education": "本科",
+        "expected_skills": ["游戏策划", "关卡设计", "数值策划", "unity"],
+        "must_contain_text": ["镜中迷宫", "系统策划"],
+        "must_not_contain_text": ["TODO"]
+      }
+    },
+    {
+      "case_id": "resume_007",
+      "category": "resume",
+      "description": "供应链管理方向简历：制造业实习",
+      "input": {
+        "resume_text": "姓名：孟涵\n学校：天津大学\n专业：物流管理\n学历：硕士\n毕业年份：2026\n技能：供应链管理、采购管理、ERP、SAP、数据分析\n实习：2024.07-2024.12 天津某制造企业 供应链实习生\n项目：2025.01-2025.05 仓储库存优化方案设计（降低库存成本 12%）"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "graduation_year", "skills", "internships", "projects"],
+        "expected_name": "孟涵",
+        "expected_education": "硕士",
+        "expected_skills": ["供应链管理", "采购管理", "erp", "sap"],
+        "must_contain_text": ["供应链实习生", "库存"],
+        "must_not_contain_text": ["手机号"]
+      }
+    },
+    {
+      "case_id": "resume_008",
+      "category": "resume",
+      "description": "硬件工程师方向简历：嵌入式项目",
+      "input": {
+        "resume_text": "姓名：吴越\n学校：哈尔滨工业大学\n专业：电子信息工程\n学历：本科\n毕业年份：2025\nGPA：3.5\n技能：C、C++、STM32、嵌入式开发、Altium Designer、Linux\n项目：2024.03-2024.08 智能温控系统（STM32 + 传感器）\n实习：2024.09-2025.01 深圳某电子公司 硬件工程师实习生"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "graduation_year", "skills", "projects", "internships"],
+        "expected_name": "吴越",
+        "expected_education": "本科",
+        "expected_skills": ["c", "c++", "stm32", "嵌入式开发", "linux"],
+        "must_contain_text": ["智能温控", "硬件工程师"],
+        "must_not_contain_text": ["占位"]
+      }
+    },
+    {
+      "case_id": "resume_101",
+      "category": "resume",
+      "description": "金融行业-量化研究简历：pandas/NumPy 等跨行业技能（跨行业回归）",
+      "input": {
+        "resume_text": "姓名：李慕\n学校：上海财经大学\n专业：金融工程\n学历：硕士\n毕业年份：2026\nGPA：3.7\n技能：Python、pandas、NumPy、SQL、MATLAB、量化策略\n实习：2025.06-2025.09 上海某量化私募 量化研究实习生\n项目：2024.10-2025.02 多因子选股回测系统（Python + pandas + NumPy）\n证书：CFA Level 1（备考中）"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "graduation_year", "skills", "internships", "projects"],
+        "expected_name": "李慕",
+        "expected_education": "硕士",
+        "expected_skills": ["python", "pandas", "numpy", "sql", "matlab", "量化策略"],
+        "must_contain_text": ["量化研究实习生", "多因子选股"],
+        "must_not_contain_text": ["TODO", "占位"]
+      }
+    },
+    {
+      "case_id": "resume_102",
+      "category": "resume",
+      "description": "医疗行业-医学影像简历：PyTorch/OpenCV 影像处理（跨行业回归）",
+      "input": {
+        "resume_text": "姓名：沈言\n学校：北京协和医学院\n专业：生物医学工程\n学历：硕士\n毕业年份：2026\n技能：Python、PyTorch、OpenCV、深度学习、医学影像处理、DICOM\n实习：2025.07-2025.10 北京某三甲医院 医学影像科实习生\n项目：2024.09-2025.01 肺结节 CT 影像检测（PyTorch + OpenCV，DICOM 数据）"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "graduation_year", "skills", "projects", "internships"],
+        "expected_name": "沈言",
+        "expected_education": "硕士",
+        "expected_skills": ["python", "pytorch", "opencv", "深度学习", "医学影像处理", "dicom"],
+        "must_contain_text": ["肺结节", "影像"],
+        "must_not_contain_text": ["占位"]
+      }
+    },
+    {
+      "case_id": "resume_103",
+      "category": "resume",
+      "description": "机械行业-结构设计简历：SolidWorks/ANSYS 等工科软件（跨行业回归）",
+      "input": {
+        "resume_text": "姓名：程野\n学校：哈尔滨工业大学\n专业：机械设计制造及其自动化\n学历：本科\n毕业年份：2025\nGPA：3.6\n技能：SolidWorks、ANSYS、AutoCAD、机械制图、材料力学、C++\n实习：2024.07-2024.12 上海某汽车零部件公司 结构设计实习生\n项目：2025.01-2025.04 新能源汽车电池包结构设计（SolidWorks 建模 + ANSYS 有限元分析）"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "graduation_year", "skills", "internships", "projects"],
+        "expected_name": "程野",
+        "expected_education": "本科",
+        "expected_skills": ["solidworks", "ansys", "autocad", "机械制图", "材料力学", "c++"],
+        "must_contain_text": ["电池包", "有限元"],
+        "must_not_contain_text": ["TODO"]
+      }
+    },
+    {
+      "case_id": "resume_104",
+      "category": "resume",
+      "description": "教育行业-课程设计简历：教学设计/课件制作（跨行业回归）",
+      "input": {
+        "resume_text": "姓名：苏禾\n学校：北京师范大学\n专业：教育学\n学历：硕士\n毕业年份：2026\n技能：教学设计、课件制作、教育心理学、Python、数据分析\n实习：2025.03-2025.07 北京某在线教育公司 课程设计实习生\n项目：2024.09-2025.01 初中数学微课体系设计（含配套练习题与学情分析）"
+      },
+      "expected": {
+        "must_have_fields": ["name", "school", "major", "education", "graduation_year", "skills", "internships", "projects"],
+        "expected_name": "苏禾",
+        "expected_education": "硕士",
+        "expected_skills": ["教学设计", "课件制作", "教育心理学", "python", "数据分析"],
+        "must_contain_text": ["课程设计实习生", "微课"],
+        "must_not_contain_text": ["占位", "手机号"]
+      }
+    }
+  ]
+}

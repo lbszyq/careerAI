@@ -1,0 +1,104 @@
+name: careerai
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: careerai-postgres
+    environment:
+      POSTGRES_USER: careerai
+      POSTGRES_PASSWORD: careerai
+      POSTGRES_DB: careerai
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U careerai -d careerai"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7
+    container_name: careerai-redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    container_name: careerai-backend
+    volumes:
+      - resume_tmp:/tmp/careerai_resumes
+      # 如需使用本机已下载的 bge-m3 / reranker 权重，可取消注释并改成自己的 HuggingFace 缓存路径
+      # - "~/.cache/huggingface:/home/appuser/.cache/huggingface"
+    env_file:
+      - path: ./backend/.env
+        required: false
+    environment:
+      # 容器内服务发现地址（覆盖 backend/.env 中的 localhost 配置）
+      DATABASE_URL: postgresql+asyncpg://careerai:careerai@postgres:5432/careerai
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      # python:3.12-slim 无 curl，用标准库 urllib 探测 /health
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://127.0.0.1:8000/health', timeout=5)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  celery:
+    build: ./backend
+    container_name: careerai-celery
+    command: ["celery", "-A", "app.tasks.celery_app", "worker", "--loglevel=info", "--concurrency=1"]
+    volumes:
+      - resume_tmp:/tmp/careerai_resumes
+      # 如需使用本机已下载的 bge-m3 / reranker 权重，可取消注释并改成自己的 HuggingFace 缓存路径
+      # - "~/.cache/huggingface:/home/appuser/.cache/huggingface"
+    env_file:
+      - path: ./backend/.env
+        required: false
+    environment:
+      DATABASE_URL: postgresql+asyncpg://careerai:careerai@postgres:5432/careerai
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+    depends_on:
+      # backend 启动时执行 alembic 迁移，worker 在迁移完成后启动
+      backend:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: careerai-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    healthcheck:
+      # nginx:alpine 自带 busybox wget
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+volumes:
+  pgdata:
+  redisdata:
+  resume_tmp:

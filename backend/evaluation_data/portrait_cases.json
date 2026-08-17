@@ -1,0 +1,139 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "category": "portrait",
+    "description": "职业画像评测输入（report.portrait 同构，纯合成样例）。eval_report_quality.py 用画像结构/评分区间规则校验本文件；含 2 条故意构造的反例以证明规则引擎能捕获问题。",
+    "structure": "cases[] = {case_id, category:\"portrait\", description, input:{画像对象}, expected:{must_have_fields, overall_score_min, overall_score_max, dimensions_required, confidence_allowed}}"
+  },
+  "cases": [
+    {
+      "case_id": "portrait_001",
+      "category": "portrait",
+      "description": "后端应届生画像：五维齐全、综合分 76（正向样例）",
+      "input": {
+        "overall_score": 76,
+        "dimensions": {"technical": 78, "project": 72, "academic": 80, "soft_skill": 70, "industry_knowledge": 65},
+        "norm": {"cohort": "2026届 × 新一线 × 计算机类", "p25": 68, "p50": 76, "p75": 84},
+        "strengths": ["掌握 Python/Java/SQL 等后端核心技能", "有 1 段后端开发实习经历"],
+        "weaknesses": ["缺少高并发项目经验", "行业认知待提升"],
+        "confidence": "中",
+        "generated_by": "rule_template"
+      },
+      "expected": {
+        "must_have_fields": ["overall_score", "dimensions", "strengths", "weaknesses", "confidence"],
+        "overall_score_min": 0,
+        "overall_score_max": 100,
+        "confidence_allowed": ["高", "中", "低"]
+      }
+    },
+    {
+      "case_id": "portrait_002",
+      "category": "portrait",
+      "description": "数据分析师画像：综合分 82（正向样例）",
+      "input": {
+        "overall_score": 82,
+        "dimensions": {"technical": 84, "project": 80, "academic": 85, "soft_skill": 76, "industry_knowledge": 78},
+        "norm": null,
+        "strengths": ["掌握机器学习/数据挖掘方法", "2 段数据分析项目落地"],
+        "weaknesses": ["缺少大数据平台（Spark/Hive）经验"],
+        "confidence": "高"
+      },
+      "expected": {
+        "must_have_fields": ["overall_score", "dimensions", "strengths", "weaknesses", "confidence"],
+        "confidence_allowed": ["高", "中", "低"]
+      }
+    },
+    {
+      "case_id": "portrait_003",
+      "category": "portrait",
+      "description": "产品经理画像：无 norm（样本不足，合法为空）",
+      "input": {
+        "overall_score": 71,
+        "dimensions": {"technical": 62, "project": 74, "academic": 68, "soft_skill": 80, "industry_knowledge": 72},
+        "strengths": ["2 段产品实习，用户研究功底扎实", "Axure/Figma 原型能力完整"],
+        "weaknesses": ["技术背景偏弱，与研发沟通成本高"],
+        "confidence": "低"
+      },
+      "expected": {
+        "must_have_fields": ["overall_score", "dimensions", "strengths", "weaknesses", "confidence"]
+      }
+    },
+    {
+      "case_id": "portrait_004",
+      "category": "portrait",
+      "description": "新媒体运营画像：五维评分区间合法（正向样例）",
+      "input": {
+        "overall_score": 68,
+        "dimensions": {"technical": 55, "project": 70, "academic": 62, "soft_skill": 75, "industry_knowledge": 66},
+        "strengths": ["公众号运营粉丝 2w", "文案与内容策划能力突出"],
+        "weaknesses": ["缺少直播运营经验", "数据分析能力一般"],
+        "confidence": "中"
+      },
+      "expected": {
+        "must_have_fields": ["overall_score", "dimensions", "strengths", "weaknesses", "confidence"]
+      }
+    },
+    {
+      "case_id": "portrait_005",
+      "category": "portrait",
+      "description": "综合评分 0 分边界（画像信息不足时的合法下限）",
+      "input": {
+        "overall_score": 0,
+        "dimensions": {"technical": 0, "project": 0, "academic": 0, "soft_skill": 0, "industry_knowledge": 0},
+        "strengths": ["画像信息有限，暂无法提炼优势"],
+        "weaknesses": ["技能清单缺失，竞争力评估依据不足"],
+        "confidence": "低"
+      },
+      "expected": {
+        "must_have_fields": ["overall_score", "dimensions", "strengths", "weaknesses", "confidence"],
+        "overall_score_min": 0,
+        "overall_score_max": 100
+      }
+    },
+    {
+      "case_id": "portrait_006",
+      "category": "portrait",
+      "description": "满分边界画像（正向样例）",
+      "input": {
+        "overall_score": 100,
+        "dimensions": {"technical": 100, "project": 100, "academic": 100, "soft_skill": 100, "industry_knowledge": 100},
+        "strengths": ["各维度均为满分，综合竞争力极强"],
+        "weaknesses": ["建议补充最新行业动态认知"],
+        "confidence": "高"
+      },
+      "expected": {
+        "must_have_fields": ["overall_score", "dimensions", "strengths", "weaknesses", "confidence"]
+      }
+    },
+    {
+      "case_id": "portrait_007",
+      "category": "portrait",
+      "description": "反例：overall_score=135 超出 0-100 区间，应被规则捕获",
+      "input": {
+        "overall_score": 135,
+        "dimensions": {"technical": 90, "project": 85, "academic": 88, "soft_skill": 80, "industry_knowledge": 75},
+        "strengths": ["技能全面"],
+        "weaknesses": ["缺少实习"],
+        "confidence": "中"
+      },
+      "expected": {
+        "must_have_fields": ["overall_score", "dimensions", "strengths", "weaknesses", "confidence"],
+        "overall_score_min": 0,
+        "overall_score_max": 100
+      }
+    },
+    {
+      "case_id": "portrait_008",
+      "category": "portrait",
+      "description": "反例：缺少 weaknesses 且 technical 维度缺失，应被规则捕获",
+      "input": {
+        "overall_score": 60,
+        "dimensions": {"project": 70, "academic": 65, "soft_skill": 72, "industry_knowledge": 60},
+        "strengths": ["有项目经历"]
+      },
+      "expected": {
+        "must_have_fields": ["overall_score", "dimensions", "strengths", "weaknesses", "confidence"]
+      }
+    }
+  ]
+}

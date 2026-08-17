@@ -1,0 +1,436 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "category": "rag",
+    "description": "RAG 检索评测查询集（纯合成样例，扩充至 34 条）。覆盖 11 专业大类（_MAJOR_MAP）+ 开发工程师家族同根岗位 + 城市维度 + 1 条无命中反例（is_negative，不计入 recall 聚合）+ must_not_hit 负向断言（precision）。expected_job_titles 对齐 market_corpus.json 与 DB market_data 真实岗位名（ground_truth_coverage=100%）。eval_rag.py 计算 recall@k / 命中率 / 相关度。",
+    "structure": "cases[] = {case_id, category:\"rag\", description, query, expected_job_titles, expected_skills, expected_city, must_not_hit?(Top-10 不得命中), is_negative?(无命中反例，不计入 recall 聚合)}"
+  },
+  "cases": [
+    {
+      "case_id": "rag_001",
+      "category": "rag",
+      "description": "上海后端岗位薪资与技能要求",
+      "query": "上海的后端开发岗位薪资和技能要求是什么",
+      "expected_job_titles": [
+        "后端开发工程师"
+      ],
+      "expected_skills": [
+        "Java",
+        "Spring Boot"
+      ],
+      "expected_city": "上海"
+    },
+    {
+      "case_id": "rag_002",
+      "category": "rag",
+      "description": "数据分析岗位工具栈",
+      "query": "数据分析岗位需要掌握哪些工具",
+      "expected_job_titles": [
+        "数据分析师"
+      ],
+      "expected_skills": [
+        "SQL",
+        "Python",
+        "Tableau"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_003",
+      "category": "rag",
+      "description": "北京算法工程师要求",
+      "query": "北京的大模型算法工程师岗位要求有哪些",
+      "expected_job_titles": [
+        "算法工程师"
+      ],
+      "expected_skills": [
+        "PyTorch",
+        "机器学习"
+      ],
+      "expected_city": "北京"
+    },
+    {
+      "case_id": "rag_004",
+      "category": "rag",
+      "description": "深圳产品经理薪资",
+      "query": "深圳产品经理的薪资水平怎么样",
+      "expected_job_titles": [
+        "产品经理"
+      ],
+      "expected_skills": [],
+      "expected_city": "深圳"
+    },
+    {
+      "case_id": "rag_005",
+      "category": "rag",
+      "description": "新媒体运营能力要求",
+      "query": "新媒体运营需要具备什么能力",
+      "expected_job_titles": [
+        "新媒体运营"
+      ],
+      "expected_skills": [
+        "内容运营",
+        "文案策划"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_006",
+      "category": "rag",
+      "description": "机器学习工程师技术栈",
+      "query": "机器学习工程师要掌握哪些技术栈",
+      "expected_job_titles": [
+        "机器学习工程师"
+      ],
+      "expected_skills": [
+        "机器学习",
+        "Python"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_007",
+      "category": "rag",
+      "description": "软件测试岗位职责",
+      "query": "软件测试岗位主要做什么工作",
+      "expected_job_titles": [
+        "软件测试工程师"
+      ],
+      "expected_skills": [
+        "测试用例"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_008",
+      "category": "rag",
+      "description": "广州电商运营行情（expected 对齐 DB 岗位名「国内电商运营」）",
+      "query": "广州电商运营的行情怎么样",
+      "expected_job_titles": [
+        "国内电商运营"
+      ],
+      "expected_skills": [],
+      "expected_city": "广州"
+    },
+    {
+      "case_id": "rag_009",
+      "category": "rag",
+      "description": "转行 Java 开发学习路径",
+      "query": "想转行做 Java 开发需要学习什么",
+      "expected_job_titles": [
+        "Java开发工程师"
+      ],
+      "expected_skills": [
+        "Java",
+        "Spring Boot"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_010",
+      "category": "rag",
+      "description": "UI 设计软件要求（expected 对齐 DB 岗位名「游戏UI设计师」）",
+      "query": "UI 设计师需要掌握哪些设计软件",
+      "expected_job_titles": [
+        "游戏UI设计师"
+      ],
+      "expected_skills": [
+        "Figma"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_011",
+      "category": "rag",
+      "description": "后端方向多岗位匹配（含部分召回场景）",
+      "query": "Java 后端开发方向有哪些岗位",
+      "expected_job_titles": [
+        "后端开发工程师",
+        "Java开发工程师"
+      ],
+      "expected_skills": [
+        "Java"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_012",
+      "category": "rag",
+      "description": "前端开发工程师（开发家族同根：前端 vs 后端必须不互误）",
+      "query": "前端开发工程师需要掌握哪些技术",
+      "expected_job_titles": [
+        "前端开发工程师"
+      ],
+      "expected_skills": [
+        "React",
+        "TypeScript"
+      ],
+      "expected_city": null,
+      "must_not_hit": [
+        "后端开发工程师"
+      ]
+    },
+    {
+      "case_id": "rag_013",
+      "category": "rag",
+      "description": "Web 前端研发工程师（开发家族正例）",
+      "query": "Web前端研发工程师需要会哪些前端技术",
+      "expected_job_titles": [
+        "Web前端研发工程师"
+      ],
+      "expected_skills": [
+        "JavaScript"
+      ],
+      "expected_city": null,
+      "must_not_hit": []
+    },
+    {
+      "case_id": "rag_014",
+      "category": "rag",
+      "description": "Golang 开发工程师（开发家族）",
+      "query": "Golang开发工程师岗位需要什么技能",
+      "expected_job_titles": [
+        "Golang开发工程师"
+      ],
+      "expected_skills": [
+        "Go",
+        "微服务"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_015",
+      "category": "rag",
+      "description": "大模型应用开发工程师（AI 方向开发岗）",
+      "query": "大模型应用开发工程师岗位要求",
+      "expected_job_titles": [
+        "大模型应用开发工程师"
+      ],
+      "expected_skills": [
+        "大模型",
+        "Python"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_016",
+      "category": "rag",
+      "description": "测试开发工程师（计算机类正例，不含负向断言）",
+      "query": "测试开发工程师主要做什么",
+      "expected_job_titles": [
+        "测试开发工程师"
+      ],
+      "expected_skills": [
+        "自动化测试"
+      ],
+      "expected_city": null,
+      "must_not_hit": []
+    },
+    {
+      "case_id": "rag_017",
+      "category": "rag",
+      "description": "前端工程师（开发家族正例）",
+      "query": "前端工程师岗位需要会哪些前端框架",
+      "expected_job_titles": [
+        "前端工程师"
+      ],
+      "expected_skills": [],
+      "expected_city": null,
+      "must_not_hit": []
+    },
+    {
+      "case_id": "rag_018",
+      "category": "rag",
+      "description": "软件实施工程师（计算机类非开发岗）",
+      "query": "软件实施工程师的工作内容",
+      "expected_job_titles": [
+        "软件实施工程师"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_019",
+      "category": "rag",
+      "description": "会计专业人员（经济金融类）",
+      "query": "会计岗位的薪资和职业要求",
+      "expected_job_titles": [
+        "会计专业人员"
+      ],
+      "expected_skills": [
+        "会计"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_020",
+      "category": "rag",
+      "description": "银行综合柜员（经济金融类，query 对齐完整岗位名）",
+      "query": "银行综合柜员岗位的薪资和任职要求",
+      "expected_job_titles": [
+        "银行综合柜员"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_021",
+      "category": "rag",
+      "description": "证券投资专业人员（经济金融类）",
+      "query": "证券投资岗位的薪资水平",
+      "expected_job_titles": [
+        "证券投资专业人员"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_022",
+      "category": "rag",
+      "description": "小学教师（教育类）",
+      "query": "小学教师的薪资和任职要求",
+      "expected_job_titles": [
+        "小学教师"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_023",
+      "category": "rag",
+      "description": "高中物理教师（教育类）",
+      "query": "高中物理教师岗位要求",
+      "expected_job_titles": [
+        "高中物理教师"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_024",
+      "category": "rag",
+      "description": "机械设计工程技术人员（机械类）",
+      "query": "机械设计岗位需要什么技能",
+      "expected_job_titles": [
+        "机械设计工程技术人员"
+      ],
+      "expected_skills": [
+        "CAD"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_025",
+      "category": "rag",
+      "description": "电气工程技术人员（电气类）",
+      "query": "电气工程岗位的薪资怎么样",
+      "expected_job_titles": [
+        "电气工程技术人员"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_026",
+      "category": "rag",
+      "description": "电力工程技术人员（电气类）",
+      "query": "电力工程岗位的薪资水平",
+      "expected_job_titles": [
+        "电力工程技术人员"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_027",
+      "category": "rag",
+      "description": "土木建筑工程技术人员（土木类）",
+      "query": "土木工程岗位的薪资水平",
+      "expected_job_titles": [
+        "土木建筑工程技术人员"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_028",
+      "category": "rag",
+      "description": "护理人员（医学类）",
+      "query": "护理岗位的薪资和任职要求",
+      "expected_job_titles": [
+        "护理人员"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_029",
+      "category": "rag",
+      "description": "律师（法学类）",
+      "query": "律师岗位的薪资和执业要求",
+      "expected_job_titles": [
+        "律师"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_030",
+      "category": "rag",
+      "description": "法律顾问（法学类）",
+      "query": "企业法律顾问岗位怎么样",
+      "expected_job_titles": [
+        "法律顾问"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_031",
+      "category": "rag",
+      "description": "视觉传达设计人员（艺术设计类）",
+      "query": "视觉传达设计岗位需要掌握什么软件",
+      "expected_job_titles": [
+        "视觉传达设计人员"
+      ],
+      "expected_skills": [
+        "Photoshop"
+      ],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_032",
+      "category": "rag",
+      "description": "文字编辑（新闻传播类）",
+      "query": "文字编辑岗位的任职要求",
+      "expected_job_titles": [
+        "文字编辑"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_033",
+      "category": "rag",
+      "description": "人力资源专业人员（工商管理类）",
+      "query": "人力资源岗位的薪资水平",
+      "expected_job_titles": [
+        "人力资源专业人员"
+      ],
+      "expected_skills": [],
+      "expected_city": null
+    },
+    {
+      "case_id": "rag_034",
+      "category": "rag",
+      "description": "无命中反例：查询岗位在语料中不存在",
+      "query": "火星车驾驶员岗位的薪资水平怎么样",
+      "expected_job_titles": [
+        "火星车驾驶员"
+      ],
+      "expected_skills": [],
+      "expected_city": null,
+      "is_negative": true
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+# --- Web 框架 ---
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30,<1.0
+python-multipart>=0.0.9
+# --- ORM / 数据库 ---
+sqlalchemy[asyncio]>=2.0.30,<2.1
+asyncpg>=0.29,<1.0
+alembic>=1.13,<2.0
+pgvector>=0.3,<0.4
+# --- 校验 / 配置 ---
+pydantic>=2.7,<3.0
+pydantic-settings>=2.3,<3.0
+# --- 异步任务 ---
+celery>=5.4,<6.0
+redis>=5.0,<6.0
+# --- 认证 ---
+PyJWT>=2.8,<3.0
+bcrypt>=4.1,<5.0
+# --- AI 编排 / LLM---
+langgraph>=0.2.60,<2.0 # LangGraph 状态图（stage1_graph / stage2_graph，architecture.md）
+openai>=1.40,<2.0 # DeepSeek OpenAI 兼容接口（LLMClient，；key 走 env 注入）
+sentence-transformers>=3.0 # bge-m3 本地向量化（1024 维，；含 torch，可选安装）
+pymupdf>=1.24 # PDF 简历文本提取（；扫描件/图片 OCR 另行评估）
+PyYAML>=6.0 # models.yaml 模型/价格配置加载（）
+# --- HTTP 客户端（LLM 异常处理依赖，见 ai/llm/client.py） ---
+httpx>=0.27,<1.0
