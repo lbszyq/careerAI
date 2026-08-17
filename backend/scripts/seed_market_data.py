@@ -32,12 +32,12 @@ _BACKEND_DIR = Path(__file__).resolve().parents[1]
 if str(_BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(_BACKEND_DIR))
 
-from sqlalchemy import insert, text # noqa: E402
-from sqlalchemy.ext.asyncio import AsyncSession # noqa: E402
+from sqlalchemy import insert, text  # noqa: E402
+from sqlalchemy.ext.asyncio import AsyncSession  # noqa: E402
 
-from app.ai.rag.vectorize import sync_market_embeddings # noqa: E402
-from app.db.base import AsyncSessionLocal # noqa: E402
-from app.models.market import MarketData # noqa: E402
+from app.ai.rag.vectorize import sync_market_embeddings  # noqa: E402
+from app.db.base import AsyncSessionLocal  # noqa: E402
+from app.models.market import MarketData  # noqa: E402
 
 VALID_SOURCE_TYPES = {"official_stat", "job_post"} # 禁止 ai_infer（反幻觉）
 VALID_CITY_TIERS = {"一线", "新一线", "二线", "三线", "四线及以下"}

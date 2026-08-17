@@ -15,11 +15,11 @@ os.environ.setdefault("TESTING", "true")
 # 测试专用 JWT 密钥（≥32 字节，消除 InsecureKeyLengthWarning；环境已有则沿用）
 os.environ.setdefault("JWT_SECRET", "tc002-test-only-secret-" + "x" * 20)
 
-from fastapi.testclient import TestClient # noqa: E402
-from sqlalchemy.ext.asyncio import AsyncSession # noqa: E402
+from fastapi.testclient import TestClient  # noqa: E402
+from sqlalchemy.ext.asyncio import AsyncSession  # noqa: E402
 
-from app.db.base import get_db # noqa: E402
-from app.main import app # noqa: E402
+from app.db.base import get_db  # noqa: E402
+from app.main import app  # noqa: E402
 
 
 @pytest.fixture

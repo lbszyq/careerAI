@@ -38,17 +38,17 @@ _BACKEND_DIR = Path(__file__).resolve().parents[1]
 if str(_BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(_BACKEND_DIR))
 
-from app.ai.agents.deps import AgentDeps # noqa: E402
-from app.ai.agents.executor_agent import executor_node # noqa: E402
-from app.ai.evaluation import ( # noqa: E402
+from app.ai.agents.deps import AgentDeps  # noqa: E402
+from app.ai.agents.executor_agent import executor_node  # noqa: E402
+from app.ai.evaluation import (  # noqa: E402
     EVALUATION_DATA_DIR,
     load_report_cases,
     load_resume_cases,
 )
-from app.ai.fallback.resume_parser import parse_resume_text # noqa: E402
-from app.ai.llm.exceptions import LLMUnavailableError # noqa: E402
-from app.ai.schemas import initial_state # noqa: E402
-from scripts.eval_report_quality import check_report # noqa: E402
+from app.ai.fallback.resume_parser import parse_resume_text  # noqa: E402
+from app.ai.llm.exceptions import LLMUnavailableError  # noqa: E402
+from app.ai.schemas import initial_state  # noqa: E402
+from scripts.eval_report_quality import check_report  # noqa: E402
 
 # 死模板/占位关键词（标准 2：成长计划禁止「系统学习并掌握 {技能} 基础」式死模板）
 _DEAD_TEMPLATE_PATTERNS = ("系统学习并掌握", "多学习", "相关教程", "学习并掌握", "打基础")

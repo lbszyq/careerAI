@@ -17,7 +17,7 @@ if str(BACKEND_DIR) not in sys.path:
 
 os.environ.setdefault("TESTING", "true")
 
-from app.ai.norm.benchmarks import ( # noqa: E402
+from app.ai.norm.benchmarks import (  # noqa: E402
     DEFAULT_MAJOR_CATEGORY,
     map_major_category,
 )

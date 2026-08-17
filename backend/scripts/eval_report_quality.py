@@ -31,13 +31,13 @@ _BACKEND_DIR = Path(__file__).resolve().parents[1]
 if str(_BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(_BACKEND_DIR))
 
-from app.ai.evaluation import ( # noqa: E402
+from app.ai.evaluation import (  # noqa: E402
     EVALUATION_DATA_DIR,
     load_portrait_cases,
     load_report_cases,
     schema_description,
 )
-from app.ai.evaluation.schemas import ( # noqa: E402
+from app.ai.evaluation.schemas import (  # noqa: E402
     PortraitExpected,
     ReportExpected,
 )

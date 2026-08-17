@@ -15,7 +15,7 @@ if str(BACKEND_DIR) not in sys.path:
 
 os.environ.setdefault("TESTING", "true")
 
-from scripts.seed_market_data import ( # noqa: E402
+from scripts.seed_market_data import (  # noqa: E402
     MAJOR_CATEGORIES,
     QUARTER_RE,
     VALID_CITY_TIERS,
